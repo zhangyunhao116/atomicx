@@ -24,17 +24,3 @@ TEXT ·LoadUint128(SB),NOSPLIT,$0
 	MOVQ AX, val_0+8(FP)
 	MOVQ DX, val_1+16(FP)
 	RET
-
-TEXT ·BitTestAndSetUint32(SB),NOSPLIT,$0
-	MOVQ addr+0(FP), DX
-	MOVL offset+8(FP), CX
-	LOCK
-	BTSL CX, (DX)
-	RET
-
-TEXT ·BitTestAndSetUint64(SB),NOSPLIT,$0
-	MOVQ addr+0(FP), DX
-	MOVQ offset+8(FP), CX
-	LOCK
-	BTSQ CX, (DX)
-	RET
