@@ -65,6 +65,3 @@ func TestCAS2(t *testing.T) {
 		t.Fatal("invalid")
 	}
 }
-
-func TestAll(t *testing.T) {
-}
