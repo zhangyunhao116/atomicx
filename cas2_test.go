@@ -9,7 +9,7 @@ import (
 
 func TestCAS2(t *testing.T) {
 	if runtime.GOARCH != "amd64" && runtime.GOARCH != "arm64" {
-		t.Skip("unsupprted arch")
+		t.Skip("unsupported arch")
 	}
 	x := new(Uint128)
 	x[0], x[1] = 123, 456
