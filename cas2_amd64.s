@@ -24,21 +24,3 @@ TEXT ·LoadUint128(SB),NOSPLIT,$0
 	MOVQ AX, val_0+8(FP)
 	MOVQ DX, val_1+16(FP)
 	RET
-
-TEXT ·CompareAndSwapUint64Pointer(SB),NOSPLIT,$0
-	JMP ·CompareAndSwapUint128(SB)
-
-TEXT ·LoadUint64Pointer(SB),NOSPLIT,$0
-	JMP ·LoadUint128(SB)
-
-TEXT ·CompareAndSwapPointerUint64(SB),NOSPLIT,$0
-	JMP ·CompareAndSwapUint128(SB)
-
-TEXT ·LoadPointerUint64(SB),NOSPLIT,$0
-	JMP ·LoadUint128(SB)
-
-TEXT ·CompareAndSwapTwoPointer(SB),NOSPLIT,$0
-	JMP ·CompareAndSwapUint128(SB)
-
-TEXT ·LoadTwoPointer(SB),NOSPLIT,$0
-	JMP ·LoadUint128(SB)
