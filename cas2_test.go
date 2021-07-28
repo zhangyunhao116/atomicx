@@ -5,6 +5,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"testing"
+	"unsafe"
 )
 
 func TestCAS2(t *testing.T) {
@@ -66,5 +67,24 @@ func TestCAS2(t *testing.T) {
 	wg.Wait()
 	if x[0] != p1 || x[1] != p2 || succ != int64(p1+p2) {
 		t.Fatal("invalid")
+	}
+
+	// Check different types.
+	var up UP
+	CompareAndSwapUint64Pointer(unsafe.Pointer(&up), UP{}, UP{v1: 123})
+	if up.v1 != 123 {
+		t.Fatal("invalid")
+	}
+
+	var pu PU
+	CompareAndSwapPointerUint64(unsafe.Pointer(&pu), PU{}, PU{v2: 123})
+	if pu.v2 != 123 {
+		t.Fatal("invalid")
+	}
+
+	var tp TP
+	CompareAndSwapTwoPointer(unsafe.Pointer(&tp), TP{}, TP{unsafe.Pointer(&tp)})
+	if uintptr(tp[0]) != uintptr(unsafe.Pointer(&tp)) {
+		t.Fatal("invalid", tp)
 	}
 }
