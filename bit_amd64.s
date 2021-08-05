@@ -2,28 +2,28 @@
 
 #include "textflag.h"
 
-TEXT ·BitTestAndSetUint32(SB),NOSPLIT,$0
+TEXT ·BitSetUint32(SB),NOSPLIT,$0
 	MOVQ addr+0(FP), DX
 	MOVL offset+8(FP), CX
 	LOCK
 	BTSL CX, (DX)
 	RET
 
-TEXT ·BitTestAndSetUint64(SB),NOSPLIT,$0
+TEXT ·BitSetUint64(SB),NOSPLIT,$0
 	MOVQ addr+0(FP), DX
 	MOVL offset+8(FP), CX
 	LOCK
 	BTSQ CX, (DX)
 	RET
 
-TEXT ·BitTestAndResetUint32(SB),NOSPLIT,$0
+TEXT ·BitResetUint32(SB),NOSPLIT,$0
 	MOVQ addr+0(FP), DX
 	MOVL offset+8(FP), CX
 	LOCK
 	BTRL CX, (DX)
 	RET
 
-TEXT ·BitTestAndResetUint64(SB),NOSPLIT,$0
+TEXT ·BitResetUint64(SB),NOSPLIT,$0
 	MOVQ addr+0(FP), DX
 	MOVL offset+8(FP), CX
 	LOCK
